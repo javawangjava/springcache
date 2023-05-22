@@ -37,6 +37,7 @@ public class UserController {
         return user;
     }
 
+
     /**
      * CacheEvict：清理指定缓存
      * value：缓存的名称，每个缓存名称下面可以有多个key
@@ -51,7 +52,14 @@ public class UserController {
         userService.removeById(id);
     }
 
+
     // 在更新数据之后，数据库的数据已经发生了变更，我们需要将缓存中对应的数据删除掉，避免出现数据库数据与缓存数据不一致的情况。
+    // key的写法如下：
+    // #user.id : #user指的是方法形参的名称, id指的是user的id属性 , 也就是使用user的id属性作为key ;
+    // #user.name: #user指的是方法形参的名称, name指的是user的name属性 ,也就是使用user的name属性作为key ;
+    // #result.id : #result代表方法返回值，该表达式 代表以返回对象的id属性作为key ；
+    // #result.name : #result代表方法返回值，该表达式 代表以返回对象的name属性作为key ；
+
     //@CacheEvict(value = "userCache",key = "#p0.id")
     //@CacheEvict(value = "userCache",key = "#root.args[0].id")
     //@CacheEvict(value = "userCache",key = "#result.id")
@@ -75,6 +83,7 @@ public class UserController {
         User user = userService.getById(id);
         return user;
     }
+
 
     // 在list方法中进行查询时，有两个查询条件，如果传递了id，根据id查询； 如果传递了name， 根据name查询，那么我们缓存的key在设计的时候，就需要既包含id，又包含name。
     @Cacheable(value = "userCache",key = "#user.id + '_' + #user.name")

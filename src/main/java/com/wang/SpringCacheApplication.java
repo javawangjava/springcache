@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @Slf4j
 @SpringBootApplication
+// @EnableCaching 类注解，在启动类上使用，开启缓存注解功能
 @EnableCaching
 public class SpringCacheApplication {
     public static void main(String[] args) {
