@@ -95,4 +95,5 @@ public class UserController {
         List<User> list = userService.list(queryWrapper);
         return list;
     }
+
 }
