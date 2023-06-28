@@ -24,6 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     /**
      * CachePut：将方法返回值放入缓存
      * value：缓存的名称，每个缓存名称下面可以有多个key
@@ -70,6 +71,7 @@ public class UserController {
         return user;
     }
 
+
     /**
      * Cacheable：在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中
      * value：缓存的名称，每个缓存名称下面可以有多个key
@@ -95,5 +97,6 @@ public class UserController {
         List<User> list = userService.list(queryWrapper);
         return list;
     }
+
 
 }
